@@ -36,8 +36,6 @@ const App: React.FC = () => {
 	const getPosts = async () => {
 		const response = await fetch(url, method);
 		const resStatus = response.status;
-		setStatus(resStatus);
-		console.log(resStatus);
 
 		try {
 			if (resStatus === 200) {

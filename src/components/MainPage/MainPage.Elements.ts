@@ -14,7 +14,9 @@ export const PostLink = styled.div`
 	max-width: 600px;
 	width: 100%;
 	padding: 15px;
-	border: 1px solid #5c5c5c;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+	margin: 15px;
 	margin-bottom: 30px;
 `;
 
