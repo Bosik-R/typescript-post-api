@@ -4,12 +4,8 @@ import styled from 'styled-components';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
 import Post from './components/Post/Post';
-import {
-	GlobalContext,
-	InitialPostData,
-	PostProps,
-	AllPostsProps,
-} from './utils/GlobalContext';
+import ResponseMessage from './components/ResponseMessage/ResponseMessage';
+import { GlobalContext, InitialPostData, PostProps, AllPostsProps } from './utils/GlobalContext';
 
 const Container = styled.div`
 	max-width: 1024px;
@@ -25,8 +21,6 @@ const Wrapper = styled.div`
 	margin-bottom: 50px;
 `;
 
-const Loading = styled.h1``;
-
 const url = 'https://jsonplaceholder.typicode.com/posts';
 
 const method = {
@@ -34,14 +28,18 @@ const method = {
 	headers: { 'Content-Type': 'application/json' },
 };
 
+type StatusProps = {};
+
 const App: React.FC = () => {
 	const [posts, setPosts] = useState<AllPostsProps>([]);
 	const [postData, setPostData] = useState<PostProps>(InitialPostData);
+	const [resStatus, setResStatus] = useState(200);
 
 	const getPosts = async () => {
 		const response = await fetch(url, method);
 		const data = await response.json();
 		setPosts(data);
+		setResStatus(response.status);
 	};
 
 	useEffect(() => {
@@ -54,13 +52,14 @@ const App: React.FC = () => {
 				<Wrapper>
 					<BrowserRouter>
 						<Header />
-						{posts ? (
+						{resStatus === 200 && (
 							<Switch>
 								<Route exact path='/' component={MainPage} />
 								<Route path='/posts/:id' component={Post} />
 							</Switch>
-						) : (
-							<Loading>Loading...</Loading>
+						)}
+						{resStatus !== 200 && (
+							<ResponseMessage resStatus={resStatus}>Loading...</ResponseMessage>
 						)}
 					</BrowserRouter>
 				</Wrapper>
