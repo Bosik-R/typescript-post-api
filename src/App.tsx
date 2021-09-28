@@ -28,27 +28,42 @@ const method = {
 	headers: { 'Content-Type': 'application/json' },
 };
 
+interface Status {
+	loading: boolean;
+	success: boolean;
+	error: boolean;
+	resStatus: number;
+}
+
 const App: React.FC = () => {
-	const [status, setStatus] = useState<number | null>(null);
+	const [status, setStatus] = useState<Status>({
+		loading: true,
+		success: false,
+		error: false,
+		resStatus: 0,
+	});
 	const [posts, setPosts] = useState<AllPostsProps>([]);
 	const [postData, setPostData] = useState<PostProps>(InitialPostData);
 
 	const getPosts = async () => {
-		const response = await fetch(url, method);
-		const resStatus = response.status;
-
 		try {
-			if (resStatus === 200) {
+			const response = await fetch(url, method);
+			if (!response.ok) {
+				setStatus({ loading: false, success: false, error: true, resStatus: response.status });
+			} else {
 				const data = await response.json();
+				setStatus({ loading: false, success: true, error: false, resStatus: response.status });
 				setPosts(data);
 			}
-		} catch (err: any) {
-			setStatus(err);
+		} catch (err) {
+			setStatus({ loading: false, success: false, error: true, resStatus: 500 });
 		}
 	};
 
 	useEffect(() => {
-		getPosts();
+		setTimeout(() => {
+			getPosts();
+		}, 2000);
 	}, []);
 
 	return (
@@ -57,14 +72,14 @@ const App: React.FC = () => {
 				<Wrapper>
 					<BrowserRouter>
 						<Header />
-						{status === 200 ? (
+						{status.success && (
 							<Switch>
 								<Route exact path='/' component={MainPage} />
 								<Route path='/posts/:id' component={Post} />
 							</Switch>
-						) : (
-							<Message status={status} />
 						)}
+						{status.error && <Message status={status.resStatus} />}
+						{status.loading && <h1>loading</h1>}
 					</BrowserRouter>
 				</Wrapper>
 			</GlobalContext.Provider>
