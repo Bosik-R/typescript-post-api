@@ -6,5 +6,5 @@ export const method = {
 };
 
 export const urlComments = (id: string) => {
-	return `https://jjsonplaceholder.typicode.com/posts/${id}/comments`;
+	return `https://jsonplaceholder.typicode.com/posts/${id}/comments`;
 };

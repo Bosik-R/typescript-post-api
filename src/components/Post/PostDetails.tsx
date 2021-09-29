@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useGlobalContext } from '../../utils/GlobalContext';
 import MyLoader from '../Loading/MyLoaderComments';
-import * as S from './Post.Elements';
+import * as S from './PostDetails.Elements';
 import { method, urlComments } from '../../utils/fetchData';
 import { Status, initialStatus } from '../../utils/initialStatus';
 import Message from '../Message/Message';
@@ -12,7 +12,7 @@ interface CommentProps {
 	body: string;
 }
 
-const Post: React.FC = () => {
+const PostDetails: React.FC = () => {
 	const { postData } = useGlobalContext();
 	const [status, setStatus] = useState<Status>(initialStatus);
 	const [comments, setComments] = useState<Array<CommentProps>>([]);
@@ -62,4 +62,4 @@ const Post: React.FC = () => {
 	);
 };
 
-export default Post;
+export default PostDetails;

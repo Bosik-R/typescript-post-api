@@ -48,6 +48,13 @@ export const Breadcrumbs = styled(Link)`
 	padding: 0;
 	text-decoration: none;
 	color: #000000;
+	@media (max-width: 768px) {
+		font-size: 18px;
+	}
+
+	@media (max-width: 425px) {
+		font-size: 14px;
+	}
 `;
 
 export const Separator = styled(ArrowIosForwardOutline)`
@@ -59,4 +66,12 @@ export const Separator = styled(ArrowIosForwardOutline)`
 export const LinkTitle = styled.span`
 	margin: 0 7px;
 	color: #787878;
+
+	@media (max-width: 768px) {
+		font-size: 14px;
+	}
+
+	@media (max-width: 425px) {
+		font-size: 12px;
+	}
 `;

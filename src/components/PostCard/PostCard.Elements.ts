@@ -1,34 +1,40 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Wrapper = styled.section`
-	width: 100%;
-	padding: 20px 0;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	flex-direction: column;
-`;
-
 export const PostLink = styled.div`
 	max-width: 600px;
 	width: 100%;
 	padding: 15px;
 	border-radius: 10px;
 	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-	margin: 15px;
 	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
 `;
 
 export const Title = styled.h1`
 	margin: 10px;
 	padding-bottom: 20px;
+
+	@media (max-width: 630px) {
+		font-size: 18px;
+	}
+
+	@media (max-width: 425px) {
+		font-size: 12px;
+	}
 `;
-export const Content = styled.p``;
+export const Content = styled.p`
+	@media (max-width: 630px) {
+		font-size: 12px;
+	}
+`;
 
 export const Button = styled(Link)`
+	align-self: flex-end;
 	padding: 10px 20px;
-	float: right;
 	border: 1px solid #5c5c5c;
 	border-radius: 10px;
 	font-size: 20px;
@@ -41,6 +47,10 @@ export const Button = styled(Link)`
 	background-image: linear-gradient(90deg, #5c5c5c 50%, transparent 50%);
 	background-size: 300%;
 	transition: all 0.5s ease-in-out;
+
+	@media (max-width: 630px) {
+		font-size: 16px;
+	}
 
 	&:hover {
 		background-position: 1% 100%;

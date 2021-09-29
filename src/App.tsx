@@ -1,27 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import styled from 'styled-components';
-import Header from './components/Header/Header';
+import Layout from './components/Layout/Layout';
 import MainPage from './components/MainPage/MainPage';
 import Message from './components/Message/Message';
-import Post from './components/Post/Post';
+import PostDetails from './components/Post/PostDetails';
 import { GlobalContext, InitialPostData, PostProps, AllPostsProps } from './utils/GlobalContext';
 import { Status, initialStatus } from './utils/initialStatus';
 import { url, method } from './utils/fetchData';
-
-const Container = styled.div`
-	max-width: 1024px;
-	width: 100%;
-	margin: 0 auto;
-`;
-
-const Wrapper = styled.div`
-	width: 100%;
-	border-radius: 20px;
-	border: 1px solid #5c5c5c;
-	border-radius: 10px;
-	margin-bottom: 50px;
-`;
+import MyLoaderPosts from './components/Loading/MyLoaderPosts';
 
 const App: React.FC = () => {
 	const [status, setStatus] = useState<Status>(initialStatus);
@@ -51,23 +37,22 @@ const App: React.FC = () => {
 	}, []);
 
 	return (
-		<Container>
-			<GlobalContext.Provider value={{ posts, postData, setPostData }}>
-				<Wrapper>
-					<BrowserRouter>
-						<Header />
+		<GlobalContext.Provider value={{ posts, postData, setPostData }}>
+			<BrowserRouter>
+				<Layout>
+					<Switch>
 						{status.success && (
-							<Switch>
+							<Fragment>
 								<Route exact path='/' component={MainPage} />
-								<Route path='/posts/:id' component={Post} />
-							</Switch>
+								<Route path='/posts/:id' component={PostDetails} />
+							</Fragment>
 						)}
 						{status.error && <Message status={status.resStatus} />}
-						{status.loading && <h1>loading</h1>}
-					</BrowserRouter>
-				</Wrapper>
-			</GlobalContext.Provider>
-		</Container>
+						{status.loading && <MyLoaderPosts />}
+					</Switch>
+				</Layout>
+			</BrowserRouter>
+		</GlobalContext.Provider>
 	);
 };
 

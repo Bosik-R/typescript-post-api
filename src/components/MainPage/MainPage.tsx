@@ -1,26 +1,21 @@
 import React from 'react';
-import { useGlobalContext, PostProps } from '../../utils/GlobalContext';
-import * as S from './MainPage.Elements';
+import { useGlobalContext } from '../../utils/GlobalContext';
+import styled from 'styled-components';
+import PostCard from '../PostCard/PostCard';
+
+export const Wrapper = styled.section`
+	padding: 20px 5px;
+`;
 
 const MainPage: React.FC = () => {
-	const { posts, setPostData } = useGlobalContext();
-
-	const handlePost = (post: PostProps) => {
-		setPostData({ id: post.id, title: post.title, body: post.body });
-	};
+	const { posts } = useGlobalContext();
 
 	return (
-		<S.Wrapper>
+		<Wrapper>
 			{posts.map((post) => (
-				<S.PostLink key={post.id}>
-					<S.Title>{post.title}</S.Title>
-					<S.Content>{post.body}</S.Content>
-					<S.Button to={`/posts/${post.id}`} onClick={() => handlePost(post)}>
-						Full Version
-					</S.Button>
-				</S.PostLink>
+				<PostCard postData={post} key={post.id} />
 			))}
-		</S.Wrapper>
+		</Wrapper>
 	);
 };
 
