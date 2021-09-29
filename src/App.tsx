@@ -6,6 +6,8 @@ import MainPage from './components/MainPage/MainPage';
 import Message from './components/Message/Message';
 import Post from './components/Post/Post';
 import { GlobalContext, InitialPostData, PostProps, AllPostsProps } from './utils/GlobalContext';
+import { Status, initialStatus } from './utils/initialStatus';
+import { url, method } from './utils/fetchData';
 
 const Container = styled.div`
 	max-width: 1024px;
@@ -21,27 +23,9 @@ const Wrapper = styled.div`
 	margin-bottom: 50px;
 `;
 
-const url = 'https://jsonplaceholder.typicode.com/posts';
-
-const method = {
-	method: 'GET',
-	headers: { 'Content-Type': 'application/json' },
-};
-
-interface Status {
-	loading: boolean;
-	success: boolean;
-	error: boolean;
-	resStatus: number;
-}
-
 const App: React.FC = () => {
-	const [status, setStatus] = useState<Status>({
-		loading: true,
-		success: false,
-		error: false,
-		resStatus: 0,
-	});
+	const [status, setStatus] = useState<Status>(initialStatus);
+
 	const [posts, setPosts] = useState<AllPostsProps>([]);
 	const [postData, setPostData] = useState<PostProps>(InitialPostData);
 
@@ -63,7 +47,7 @@ const App: React.FC = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			getPosts();
-		}, 2000);
+		}, 3000);
 	}, []);
 
 	return (

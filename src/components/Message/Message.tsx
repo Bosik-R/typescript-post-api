@@ -17,7 +17,7 @@ const messageText = (resStatus: number) => {
 		case 404:
 			return `Page Not Found`;
 		case 500:
-			return `Server did'nt respond`;
+			return `Server didn't respond`;
 		default:
 			return 'something is wrong';
 	}
