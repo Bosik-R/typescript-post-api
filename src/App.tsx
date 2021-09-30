@@ -33,7 +33,7 @@ const App: React.FC = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			getPosts();
-		}, 3000);
+		}, 2000);
 	}, []);
 
 	return (
@@ -48,7 +48,12 @@ const App: React.FC = () => {
 							</Fragment>
 						)}
 						{status.error && <Message status={status.resStatus} />}
-						{status.loading && <MyLoaderPosts />}
+						{status.loading && (
+							<Fragment>
+								<MyLoaderPosts />
+								<MyLoaderPosts />
+							</Fragment>
+						)}
 					</Switch>
 				</Layout>
 			</BrowserRouter>

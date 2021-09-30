@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 const Container = styled.div`
 	max-width: 1024px;
 	width: 100%;
+	min-height: 500px;
 	margin: 0 auto;
 	border: 1px solid #5c5c5c;
 	border-radius: 20px;
@@ -18,6 +19,7 @@ const Wrapper = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
+	padding: 20px 10px;
 `;
 
 const Layout: React.FC = ({ children }) => {

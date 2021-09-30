@@ -1,21 +1,34 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
+import { useMediaQuery } from 'react-responsive';
 
-const MyLoaderPosts: React.FC = () => (
-	<ContentLoader speed={2} width={400} height={160} viewBox='0 0 400 160' backgroundColor='#d3cfcf' foregroundColor='#ecebeb'>
-		<rect x='0' y='0' rx='0' ry='0' width='280' height='3' />
-		<rect x='0' y='3' rx='0' ry='0' width='3' height='150' />
-		<rect x='277' y='3' rx='3' ry='3' width='3' height='150' />
-		<rect x='10' y='15' rx='3' ry='3' width='150' height='10' />
-		<rect x='0' y='150' rx='3' ry='3' width='280' height='3' />
-		<rect x='15' y='70' rx='5' ry='5' width='250' height='5' />
-		<rect x='15' y='90' rx='5' ry='5' width='250' height='5' />
-		<rect x='160' y='110' rx='0' ry='0' width='100' height='2' />
-		<rect x='160' y='140' rx='0' ry='0' width='100' height='2' />
-		<rect x='258' y='112' rx='0' ry='0' width='2' height='28' />
-		<rect x='160' y='112' rx='0' ry='0' width='2' height='28' />
-		<rect x='176' y='122' rx='0' ry='0' width='67' height='8' />
-	</ContentLoader>
-);
+const MyLoaderPosts: React.FC = () => {
+	const SmallOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+	return (
+		<div style={{ marginBottom: 30 }}>
+			<ContentLoader
+				speed={2}
+				width={SmallOrMobile ? 280 : 604}
+				height={SmallOrMobile ? 140 : 240}
+				viewBox='0 0 604 240'
+				backgroundColor='#f3f3f3'
+				foregroundColor='#ecebeb'>
+				<rect x='2' y='2' rx='10' ry='10' width={SmallOrMobile ? '250' : '600'} height='4' />
+				<rect x='2' y='232' rx='10' ry='10' width={SmallOrMobile ? '250' : '600'} height='4' />
+				<rect x='2' y='4' rx='5' ry='5' width='4' height={SmallOrMobile ? '120' : '230'} />
+				<rect x='598' y='4' rx='5' ry='5' width='4' height={SmallOrMobile ? '120' : '230'} />
+				{SmallOrMobile ? null : (
+					<>
+						<rect x='20' y='28' rx='5' ry='5' width='400' height='18' />
+						<rect x='20' y='110' rx='0' ry='0' width='525' height='10' />
+						<rect x='20' y='135' rx='0' ry='0' width='515' height='10' />
+						<rect x='427' y='180' rx='10' ry='10' width='158' height='47' />
+					</>
+				)}
+			</ContentLoader>
+		</div>
+	);
+};
 
 export default MyLoaderPosts;
