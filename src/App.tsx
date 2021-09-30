@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import MainPage from './components/MainPage/MainPage';
 import Message from './components/Message/Message';
-import PostDetails from './components/Post/PostDetails';
+import PostDetails from './components/PostDetails/PostDetails';
 import { GlobalContext, InitialPostData, PostProps, AllPostsProps } from './utils/GlobalContext';
 import { Status, initialStatus } from './utils/initialStatus';
 import { url, method } from './utils/fetchData';
@@ -11,7 +11,6 @@ import MyLoaderPosts from './components/Loading/MyLoaderPosts';
 
 const App: React.FC = () => {
 	const [status, setStatus] = useState<Status>(initialStatus);
-
 	const [posts, setPosts] = useState<AllPostsProps>([]);
 	const [postData, setPostData] = useState<PostProps>(InitialPostData);
 
@@ -31,9 +30,10 @@ const App: React.FC = () => {
 	};
 
 	useEffect(() => {
+		// setting a timeout function to demostrate the loading skeleton
 		setTimeout(() => {
 			getPosts();
-		}, 2000);
+		}, 1500);
 	}, []);
 
 	return (
@@ -50,6 +50,7 @@ const App: React.FC = () => {
 						{status.error && <Message status={status.resStatus} />}
 						{status.loading && (
 							<Fragment>
+								<MyLoaderPosts />
 								<MyLoaderPosts />
 								<MyLoaderPosts />
 							</Fragment>

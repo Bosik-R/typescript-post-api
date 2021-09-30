@@ -8,42 +8,21 @@ export const Wrapper = styled.header`
 	border-bottom: 1px solid #5c5c5c;
 `;
 
-export const TitleWraper = styled.div`
-	padding: 10px 10px;
+export const Title = styled.div`
+	padding: 15px;
 	background-color: #262020;
 	text-align: center;
 	border-radius: 10px 10px 0 0;
 	color: #ffffff;
-	position: relative;
 	overflow: hidden;
 `;
 
-export const DotsWrapper = styled.span`
-	position: absolute;
-	left: 10px;
-	top: 50%;
-	transform: translateY(-50%);
-	display: flex;
-`;
-
-export const Dot = styled.div`
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	background-color: #858585;
-	margin-right: 8px;
-
-	&:hover {
-		background-color: #05a90a;
-	}
-`;
-
-export const Nav = styled.nav`
+export const Breadcrumbs = styled.nav`
 	width: 100%;
 	padding: 10px;
 `;
 
-export const Breadcrumbs = styled(Link)`
+export const LinkBtn = styled(Link)`
 	margin: 0 5px;
 	padding: 0;
 	text-decoration: none;

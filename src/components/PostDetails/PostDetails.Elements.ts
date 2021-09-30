@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.section`
 	width: 50%;
@@ -26,11 +27,31 @@ export const Title = styled.h1`
 `;
 
 export const PostContent = styled.p`
+	position: relative;
 	padding: 20px;
 	margin-bottom: 30px;
 
 	@media (max-width: 425px) {
 		font-size: 12px;
+	}
+`;
+
+export const GoBackBtn = styled(Link)`
+	position: absolute;
+	right: 10px;
+	bottom: -20px;
+	padding: 6px 10px;
+	border: 1px solid #033500;
+	border-radius: 10px;
+	cursor: pointer;
+	text-decoration: none;
+	color: #000000;
+	transition: all 0.4s ease-in-out;
+
+	&:hover {
+		background-color: #033500;
+		color: #ffffff;
+		border-color: #ffffff;
 	}
 `;
 

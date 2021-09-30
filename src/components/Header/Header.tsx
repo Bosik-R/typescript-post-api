@@ -7,25 +7,19 @@ const Header: React.FC = () => {
 
 	return (
 		<S.Wrapper>
-			<S.TitleWraper>
-				<S.DotsWrapper>
-					<S.Dot></S.Dot>
-					<S.Dot></S.Dot>
-					<S.Dot></S.Dot>
-				</S.DotsWrapper>
-				Dashboard
-			</S.TitleWraper>
-			<S.Nav>
-				<S.Breadcrumbs to='/' onClick={() => setPostData(InitialPostData)}>
+			<S.Title>{`{JSON}`} Placeholder</S.Title>
+
+			<S.Breadcrumbs>
+				<S.LinkBtn to='/' onClick={() => setPostData(InitialPostData)}>
 					Posts
-				</S.Breadcrumbs>
+				</S.LinkBtn>
 				{postData.id && (
 					<>
 						<S.Separator>{'>'}</S.Separator>
 						<S.LinkTitle>{postData.title}</S.LinkTitle>
 					</>
 				)}
-			</S.Nav>
+			</S.Breadcrumbs>
 		</S.Wrapper>
 	);
 };

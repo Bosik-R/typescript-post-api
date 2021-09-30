@@ -17,7 +17,7 @@ const PostDetails: React.FC = () => {
 	const [status, setStatus] = useState<Status>(initialStatus);
 	const [comments, setComments] = useState<Array<CommentProps>>([]);
 
-	const getPost = async () => {
+	const getPostDetails = async () => {
 		try {
 			const response = await fetch(urlComments(postData.id), method);
 			if (!response.ok) {
@@ -34,14 +34,17 @@ const PostDetails: React.FC = () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			getPost();
-		}, 2000);
+			getPostDetails();
+		}, 1500);
 	}, []);
 
 	return (
 		<S.Wrapper>
 			<S.Title>{postData.title}</S.Title>
-			<S.PostContent>{postData.body}</S.PostContent>
+			<S.PostContent>
+				{postData.body}
+				<S.GoBackBtn to='/'>Go back</S.GoBackBtn>
+			</S.PostContent>
 			<S.CommentsWrapper>Comments</S.CommentsWrapper>
 			{status.loading && (
 				<Fragment>
