@@ -7,18 +7,18 @@ export const Wrapper = styled.section`
 
 	@media (max-width: 768px) {
 		width: 100%;
+		padding: 10px;
 	}
 `;
 
 export const Title = styled.h1`
 	margin: 0 auto;
-	padding: 10px 20px;
+	padding: 10px;
 	border-bottom: 2px solid #094000;
 	border-top: 2px solid #094000;
 
 	@media (max-width: 768px) {
 		font-size: 18px;
-		width: 90%;
 	}
 
 	@media (max-width: 425px) {
@@ -28,7 +28,7 @@ export const Title = styled.h1`
 
 export const PostContent = styled.p`
 	position: relative;
-	padding: 20px;
+	padding: 10px;
 	margin-bottom: 30px;
 
 	@media (max-width: 425px) {
@@ -39,7 +39,7 @@ export const PostContent = styled.p`
 export const GoBackBtn = styled(Link)`
 	position: absolute;
 	right: 10px;
-	bottom: -20px;
+	bottom: -40px;
 	padding: 6px 10px;
 	border: 1px solid #033500;
 	border-radius: 10px;
@@ -54,10 +54,10 @@ export const GoBackBtn = styled(Link)`
 `;
 
 export const CommentsWrapper = styled.ul`
-	font-size: 20px;
-	font-weight: bolder;
-	margin: 20px;
-	padding: 0;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 20px 0;
+	padding: 0 20px;
 	border-bottom: 2px solid #094000;
 
 	@media (max-width: 768px) {
