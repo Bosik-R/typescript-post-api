@@ -44,14 +44,12 @@ export const GoBackBtn = styled(Link)`
 	border: 1px solid #033500;
 	border-radius: 10px;
 	cursor: pointer;
-	text-decoration: none;
 	color: #000000;
 	transition: all 0.4s ease-in-out;
 
 	&:hover {
 		background-color: #033500;
 		color: #ffffff;
-		border-color: #ffffff;
 	}
 `;
 

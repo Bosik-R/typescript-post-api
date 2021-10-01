@@ -11,6 +11,10 @@ const Container = styled.div`
 	border-radius: 20px;
 	margin-bottom: 20px;
 	overflow: hidden;
+
+	@media (max-width: 1023px) {
+		border-radius: 0;
+	}
 `;
 
 const Wrapper = styled.div`

@@ -3,18 +3,46 @@ import { Link } from 'react-router-dom';
 import { ArrowIosForwardOutline } from '@styled-icons/evaicons-outline/ArrowIosForwardOutline';
 
 export const Wrapper = styled.header`
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 	border-bottom: 1px solid #5c5c5c;
 `;
 
-export const Title = styled.div`
-	padding: 15px;
+export const Title = styled.h1`
+	padding: 20px;
+	margin: 0;
 	background-color: #262020;
 	text-align: center;
-	border-radius: 10px 10px 0 0;
 	color: #ffffff;
 	overflow: hidden;
+
+	@media (max-width: 650px) {
+		font-size: 14px;
+		text-align: left;
+	}
+`;
+
+export const EditModeBtn = styled.button<{ edit: boolean }>`
+	position: absolute;
+	top: 25px;
+	right: 100px;
+	background: ${({ edit }) => (edit ? '#ffffff' : '#515151')};
+	color: ${({ edit }) => (edit ? '#000000' : '#ffffff')};
+	border: 1px solid #ffffff;
+	border-radius: 10px;
+	padding: 8px 10px;
+	cursor: pointer;
+
+	@media (max-width: 768px) {
+		right: 50px;
+	}
+
+	@media (max-width: 650px) {
+		top: 13px;
+		right: 20px;
+		font-size: 12px;
+	}
 `;
 
 export const Breadcrumbs = styled.nav`

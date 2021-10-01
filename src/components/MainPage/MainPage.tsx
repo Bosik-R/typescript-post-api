@@ -3,7 +3,9 @@ import { useGlobalContext } from '../../utils/GlobalContext';
 import styled from 'styled-components';
 import PostCard from '../PostCard/PostCard';
 
-export const Wrapper = styled.section``;
+export const Wrapper = styled.section`
+	position: relative;
+`;
 
 const MainPage: React.FC = () => {
 	const { posts } = useGlobalContext();
@@ -11,7 +13,7 @@ const MainPage: React.FC = () => {
 	return (
 		<Wrapper>
 			{posts.map((post) => (
-				<PostCard postData={post} key={post.id} />
+				<PostCard post={post} key={post.id} />
 			))}
 		</Wrapper>
 	);

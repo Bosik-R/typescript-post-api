@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ThreeDotsVertical } from '@styled-icons/bootstrap/ThreeDotsVertical';
+
+interface Props {
+	edit: boolean;
+}
 
 export const PostLink = styled.div`
+	position: relative;
 	width: 600px;
 	padding: 15px;
 	border-radius: 10px;
@@ -17,9 +23,18 @@ export const PostLink = styled.div`
 	}
 `;
 
+export const MobileIcon = styled(ThreeDotsVertical)`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	color: #000000;
+`;
+
 export const Title = styled.h1`
-	margin: 10px;
+	margin: 0;
 	padding-bottom: 20px;
+	width: 90%;
 
 	@media (max-width: 650px) {
 		font-size: 12px;
@@ -32,14 +47,42 @@ export const Content = styled.p`
 	}
 `;
 
-export const Button = styled(Link)`
-	align-self: flex-end;
+export const ButtonsWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+`;
+
+export const EditNav = styled.nav`
+	display: flex;
+	flex-grow: 1;
+	justify-content: flex-start;
+	align-items: center;
+`;
+
+export const NavBtn = styled.button`
+	padding: 10px 15px;
+	margin: 0px 12px;
+	border: 1px solid #033500;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #000000;
+	background-color: inherit;
+	transition: all 0.4s ease-in-out;
+
+	&:hover {
+		background-color: #033500;
+		color: #ffffff;
+	}
+`;
+
+export const PostDetailsButton = styled(Link)`
 	padding: 10px 20px;
 	border: 1px solid #5c5c5c;
 	border-radius: 10px;
 	font-size: 20px;
 	background-color: inherit;
-	transition: all 300ms ease;
 	cursor: pointer;
 	text-decoration: none;
 	color: #000000;

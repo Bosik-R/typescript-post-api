@@ -13,6 +13,7 @@ const App: React.FC = () => {
 	const [status, setStatus] = useState<Status>(initialStatus);
 	const [posts, setPosts] = useState<AllPostsProps>([]);
 	const [postData, setPostData] = useState<PostProps>(InitialPostData);
+	const [editMode, setEditMode] = useState(false);
 
 	const getPosts = async () => {
 		try {
@@ -37,7 +38,8 @@ const App: React.FC = () => {
 	}, []);
 
 	return (
-		<GlobalContext.Provider value={{ posts, postData, setPostData }}>
+		<GlobalContext.Provider
+			value={{ editMode, setEditMode, posts, setPosts, postData, setPostData }}>
 			<BrowserRouter>
 				<Layout>
 					<Switch>

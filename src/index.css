@@ -7,6 +7,11 @@ p {
 	font-family: 'Roboto', sans-serif;
 }
 
+a {
+	text-decoration: none;
+	background: inherit;
+}
+
 * {
 	box-sizing: border-box;
 }

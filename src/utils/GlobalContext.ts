@@ -15,7 +15,10 @@ export interface PostsContextTypes {
 		title: string;
 		body: string;
 	};
+	editMode: boolean;
+	setEditMode: (data: boolean) => void;
 	setPostData: (data: PostProps) => void;
+	setPosts: (data: Array<PostProps>) => void;
 }
 
 export const InitialPostData = {
@@ -27,7 +30,10 @@ export const InitialPostData = {
 export const GlobalContext = createContext<PostsContextTypes>({
 	posts: [],
 	postData: InitialPostData,
+	editMode: false,
+	setEditMode: () => {},
 	setPostData: () => {},
+	setPosts: () => {},
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);
