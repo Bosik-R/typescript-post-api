@@ -20,15 +20,32 @@ export const ModalWrapper = styled.div`
 `;
 
 export const EditArea = styled.textarea<PropsEditArea>`
-	font-size: ${({ textTitle }) => (textTitle === 'title' ? '24px' : '16px')};
 	width: 100%;
-	height: 70%;
 	border: none;
 	outline: none;
 	resize: none;
 	font-family: inherit;
-	font-weight: bold;
 	overflow: auto;
+	font-size: 16px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #919191;
+
+	${({ textTitle }) => {
+		switch (textTitle) {
+			case 'commentName':
+				return `
+					height: 15%;
+          `;
+			case 'comment':
+				return `
+						height: 60%;
+					`;
+			default:
+				return `
+						height: 70%;
+          `;
+		}
+	}}
 
 	@media (max-width: 650px) {
 		font-size: 12px;

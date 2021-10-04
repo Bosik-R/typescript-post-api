@@ -11,3 +11,17 @@ export const initialStatus = {
 	error: false,
 	resStatus: 0,
 };
+
+export type ModalProps = {
+	open: boolean;
+	id: string;
+	type: string;
+	data: string;
+};
+
+export const initialModalData = {
+	open: false,
+	id: '',
+	type: '',
+	data: '',
+};

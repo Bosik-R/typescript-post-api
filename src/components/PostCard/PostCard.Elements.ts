@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ThreeDotsVertical } from '@styled-icons/bootstrap/ThreeDotsVertical';
 
-interface Props {
-	edit: boolean;
-}
-
 export const PostLink = styled.div`
 	position: relative;
 	width: 600px;
@@ -19,7 +15,7 @@ export const PostLink = styled.div`
 	align-items: flex-start;
 
 	@media (max-width: 650px) {
-		width: 274px;
+		width: 298px;
 	}
 `;
 

@@ -1,10 +1,14 @@
 import React from 'react';
-import { useGlobalContext, InitialPostData } from '../../utils/GlobalContext';
+import { useGlobalContext, initialPostData, initialCommentsData } from '../../utils/GlobalContext';
 import * as S from './Header.Elements';
 
 const Header: React.FC = () => {
-	const { postData, setPostData, editMode, setEditMode } = useGlobalContext();
-	console.log(editMode);
+	const { postData, setPostData, editMode, setEditMode, setComments } = useGlobalContext();
+
+	const handleGoBack = () => {
+		setPostData(initialPostData);
+		setComments(initialCommentsData);
+	};
 
 	return (
 		<S.Wrapper>
@@ -13,7 +17,7 @@ const Header: React.FC = () => {
 				EDIT MODE
 			</S.EditModeBtn>
 			<S.Breadcrumbs>
-				<S.LinkBtn to='/' onClick={() => setPostData(InitialPostData)}>
+				<S.LinkBtn to='/' onClick={() => handleGoBack()}>
 					Posts
 				</S.LinkBtn>
 				{postData.id && (

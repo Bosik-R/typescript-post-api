@@ -1,21 +1,16 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { useGlobalContext } from '../../utils/GlobalContext';
-import MyLoader from '../Loading/MyLoaderComments';
-import * as S from './PostDetails.Elements';
+import { initialCommentsData, initialPostData, useGlobalContext } from '../../utils/GlobalContext';
 import { method, urlComments } from '../../utils/fetchData';
-import { Status, initialStatus } from '../../utils/initialStatus';
+import { Status, initialStatus, initialModalData } from '../../utils/initialData';
+import * as S from './PostDetails.Elements';
+import MyLoader from '../Loading/MyLoaderComments';
 import Message from '../Message/Message';
-
-interface CommentProps {
-	id: string;
-	name: string;
-	body: string;
-}
+import Modal from '../Modal/Modal';
 
 const PostDetails: React.FC = () => {
-	const { postData } = useGlobalContext();
+	const { comments, setComments, editMode, postData, setPostData } = useGlobalContext();
 	const [status, setStatus] = useState<Status>(initialStatus);
-	const [comments, setComments] = useState<Array<CommentProps>>([]);
+	const [modalData, setModalData] = useState(initialModalData);
 
 	const getPostDetails = async () => {
 		try {
@@ -35,32 +30,46 @@ const PostDetails: React.FC = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			getPostDetails();
-		}, 1500);
+		}, 1000);
+		return () => {
+			setPostData(initialPostData);
+			setComments(initialCommentsData);
+		};
 	}, []);
+
+	const handleGoBack = () => {};
 
 	return (
 		<S.Wrapper>
-			<S.Title>{postData.title}</S.Title>
-			<S.PostContent>
-				{postData.body}
-				<S.GoBackBtn to='/'>Go back</S.GoBackBtn>
-			</S.PostContent>
-			<S.CommentsWrapper>Comments</S.CommentsWrapper>
-			{status.loading && (
-				<Fragment>
-					<MyLoader />
-					<MyLoader />
-				</Fragment>
-			)}
-			{status.error && <Message status={status.resStatus} />}
-			{status.success && comments.length === 0 && <h1> there are no comments</h1>}
-			{status.success &&
-				comments.map((comment) => (
-					<S.Comment key={comment.id}>
-						<S.CommentName>{comment.name}</S.CommentName>
-						<S.CommentContent>{comment.body}</S.CommentContent>
-					</S.Comment>
-				))}
+			<S.InheritData>
+				{modalData.open && <Modal modalData={modalData} setModalData={setModalData} />}
+				<S.Title>{postData.title}</S.Title>
+				<S.Paragraph>{postData.body}</S.Paragraph>
+				<S.BtnWrapper>
+					{editMode && <S.AddCommentBtn onClick={() => setModalData({ ...modalData, open: true, type: 'comment' })}>Add comment</S.AddCommentBtn>}
+					<S.GoBackBtn to='/' onClick={() => handleGoBack()}>
+						Go back
+					</S.GoBackBtn>
+				</S.BtnWrapper>
+				<S.Title>Comments</S.Title>
+			</S.InheritData>
+			<S.CommentsWrapper>
+				{status.loading && (
+					<Fragment>
+						<MyLoader />
+						<MyLoader />
+					</Fragment>
+				)}
+				{status.error && <Message status={status.resStatus} />}
+				{status.success && comments.length === 0 && <S.NoCommentsMessage> there are no comments</S.NoCommentsMessage>}
+				{status.success &&
+					comments.map((comment) => (
+						<S.Comment key={comment.id}>
+							<S.CommentName>{comment.name}</S.CommentName>
+							<S.Paragraph>{comment.body}</S.Paragraph>
+						</S.Comment>
+					))}
+			</S.CommentsWrapper>
 		</S.Wrapper>
 	);
 };

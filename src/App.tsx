@@ -4,15 +4,16 @@ import Layout from './components/Layout/Layout';
 import MainPage from './components/MainPage/MainPage';
 import Message from './components/Message/Message';
 import PostDetails from './components/PostDetails/PostDetails';
-import { GlobalContext, InitialPostData, PostProps, AllPostsProps } from './utils/GlobalContext';
-import { Status, initialStatus } from './utils/initialStatus';
+import { GlobalContext, initialPostData, PostProps, CommentProps, initialCommentsData } from './utils/GlobalContext';
+import { Status, initialStatus } from './utils/initialData';
 import { url, method } from './utils/fetchData';
 import MyLoaderPosts from './components/Loading/MyLoaderPosts';
 
 const App: React.FC = () => {
 	const [status, setStatus] = useState<Status>(initialStatus);
-	const [posts, setPosts] = useState<AllPostsProps>([]);
-	const [postData, setPostData] = useState<PostProps>(InitialPostData);
+	const [posts, setPosts] = useState<Array<PostProps>>([]);
+	const [postData, setPostData] = useState<PostProps>(initialPostData);
+	const [comments, setComments] = useState<Array<CommentProps>>(initialCommentsData);
 	const [editMode, setEditMode] = useState(false);
 
 	const getPosts = async () => {
@@ -38,8 +39,7 @@ const App: React.FC = () => {
 	}, []);
 
 	return (
-		<GlobalContext.Provider
-			value={{ editMode, setEditMode, posts, setPosts, postData, setPostData }}>
+		<GlobalContext.Provider value={{ editMode, setEditMode, posts, setPosts, postData, setPostData, comments, setComments }}>
 			<BrowserRouter>
 				<Layout>
 					<Switch>

@@ -19,7 +19,7 @@ const messageText = (resStatus: number) => {
 		case 500:
 			return `Server didn't respond`;
 		default:
-			return 'something is wrong';
+			return 'something went wrong';
 	}
 };
 
