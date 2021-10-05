@@ -63,7 +63,11 @@ export const GoBackBtn = styled(Link)`
 	}
 `;
 
-export const AddCommentBtn = styled.button`
+interface Props {
+	editMode: boolean;
+}
+
+export const AddCommentBtn = styled.button<Props>`
 	align-self: flex-start;
 	padding: 6px 10px;
 	margin-right: 30px;
@@ -73,6 +77,14 @@ export const AddCommentBtn = styled.button`
 	font-size: 16px;
 	background-color: inherit;
 	font-family: inherit;
+	${({ editMode }) =>
+		editMode
+			? 'transform: scale(1); opacity: 1; cursor: pointer'
+			: `transform: scale(0.5); opacity: 0; cursor: default`};
+
+	//transform: ${({ editMode }) => (editMode ? 'scale(1)' : 'scale(0.3)')};
+	//opacity: ${({ editMode }) => (editMode ? '1' : '0')};
+	//cursor: ${({ editMode }) => (editMode ? 'pointer' : 'default')};
 	transition: all 0.4s ease-in-out;
 
 	&:hover {

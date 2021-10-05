@@ -1,3 +1,4 @@
+import { EditModeBtn } from './../Header/Header.Elements';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ThreeDotsVertical } from '@styled-icons/bootstrap/ThreeDotsVertical';
@@ -50,11 +51,20 @@ export const ButtonsWrapper = styled.div`
 	align-items: center;
 `;
 
-export const EditNav = styled.nav`
+interface EditNavProps {
+	editMode: boolean;
+}
+
+export const EditNav = styled.nav<EditNavProps>`
 	display: flex;
 	flex-grow: 1;
 	justify-content: flex-start;
 	align-items: center;
+	${({ editMode }) =>
+		editMode
+			? 'transform: scale(1); opacity: 1; cursor: pointer'
+			: `transform: scale(0.5); opacity: 0; cursor: default`};
+	transition: all 0.4s ease-in-out;
 `;
 
 export const NavBtn = styled.button`
@@ -62,7 +72,7 @@ export const NavBtn = styled.button`
 	margin: 0px 12px;
 	border: 1px solid #033500;
 	border-radius: 10px;
-	cursor: pointer;
+	cursor: inherit;
 	color: #000000;
 	background-color: inherit;
 	transition: all 0.4s ease-in-out;

@@ -1,0 +1,17 @@
+.btn-visible-enter {
+	opacity: 0;
+}
+
+.btn-visible-enter-active {
+	opacity: 1;
+	transition: opacity 700ms;
+}
+
+.btn-visible-exit {
+	opacity: 1;
+}
+
+.btn-visible-exit-active {
+	opacity: 0;
+	transition: opacity 700ms;
+}

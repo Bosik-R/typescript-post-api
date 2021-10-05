@@ -4,6 +4,8 @@ import { useMediaQuery } from 'react-responsive';
 import { initialModalData } from '../../utils/initialData';
 import * as S from './PostCard.Elements';
 import Modal from '../Modal/Modal';
+import { CSSTransition } from 'react-transition-group';
+import '../../transitionStyles.css';
 
 type PostCardProps = {
 	post: PostProps;
@@ -37,8 +39,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 			<S.Title>{post.title}</S.Title>
 			<S.Content>{post.body}</S.Content>
 			<S.ButtonsWrapper>
-				{editMode && !smallOrMobile && (
-					<S.EditNav>
+				{!smallOrMobile && (
+					<S.EditNav editMode={editMode}>
 						<S.NavBtn onClick={() => handleOpenModal('title', post.title)}>EDIT TITLE</S.NavBtn>
 						<S.NavBtn onClick={() => handleOpenModal('text', post.body)}>EDIT TEXT</S.NavBtn>
 						<S.NavBtn onClick={() => handleDelete()}>DELETE POST</S.NavBtn>

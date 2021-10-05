@@ -37,8 +37,6 @@ const PostDetails: React.FC = () => {
 		};
 	}, []);
 
-	const handleGoBack = () => {};
-
 	return (
 		<S.Wrapper>
 			<S.InheritData>
@@ -46,10 +44,13 @@ const PostDetails: React.FC = () => {
 				<S.Title>{postData.title}</S.Title>
 				<S.Paragraph>{postData.body}</S.Paragraph>
 				<S.BtnWrapper>
-					{editMode && <S.AddCommentBtn onClick={() => setModalData({ ...modalData, open: true, type: 'comment' })}>Add comment</S.AddCommentBtn>}
-					<S.GoBackBtn to='/' onClick={() => handleGoBack()}>
-						Go back
-					</S.GoBackBtn>
+					<S.AddCommentBtn
+						disabled={!editMode}
+						editMode={editMode}
+						onClick={() => setModalData({ ...modalData, open: true, type: 'comment' })}>
+						Add comment
+					</S.AddCommentBtn>
+					<S.GoBackBtn to='/'>Go back</S.GoBackBtn>
 				</S.BtnWrapper>
 				<S.Title>Comments</S.Title>
 			</S.InheritData>
@@ -61,7 +62,9 @@ const PostDetails: React.FC = () => {
 					</Fragment>
 				)}
 				{status.error && <Message status={status.resStatus} />}
-				{status.success && comments.length === 0 && <S.NoCommentsMessage> there are no comments</S.NoCommentsMessage>}
+				{status.success && comments.length === 0 && (
+					<S.NoCommentsMessage> there are no comments</S.NoCommentsMessage>
+				)}
 				{status.success &&
 					comments.map((comment) => (
 						<S.Comment key={comment.id}>
