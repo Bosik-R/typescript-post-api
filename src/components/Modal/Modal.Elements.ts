@@ -17,6 +17,7 @@ export const ModalWrapper = styled.div`
 	border-radius: 10px;
 	overflow: hidden;
 	padding: 15px;
+	z-index: 10;
 `;
 
 export const EditArea = styled.textarea<PropsEditArea>`

@@ -4,8 +4,6 @@ import { useMediaQuery } from 'react-responsive';
 import { initialModalData } from '../../utils/initialData';
 import * as S from './PostCard.Elements';
 import Modal from '../Modal/Modal';
-import { CSSTransition } from 'react-transition-group';
-import '../../transitionStyles.css';
 
 type PostCardProps = {
 	post: PostProps;
@@ -15,6 +13,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 	const { posts, editMode, setPosts, setPostData } = useGlobalContext();
 	const smallOrMobile = useMediaQuery({ query: '(max-width: 650px)' });
 	const [modalData, setModalData] = useState(initialModalData);
+	const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
 	const handlePost = (postDetails: PostProps) => {
 		setPostData({ id: postDetails.id, title: postDetails.title, body: postDetails.body });
@@ -33,9 +32,20 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
 	return (
 		<S.PostLink key={post.id}>
-			{editMode && smallOrMobile && <S.MobileIcon />}
+			{openMobileMenu && editMode && (
+				<S.MobileMenu>
+					<S.Option onClick={() => handleOpenModal('title', post.title)}>edit title</S.Option>
+					<S.Option onClick={() => handleOpenModal('text', post.body)}>edit text</S.Option>
+					<S.Option onClick={() => handleDelete()}>delete post</S.Option>
+				</S.MobileMenu>
+			)}
+			{editMode && smallOrMobile && (
+				<S.MobileMenuBtn onClick={() => setOpenMobileMenu(!openMobileMenu)}>
+					<S.MobileMenuIcon openMobileMenu={openMobileMenu} />
+				</S.MobileMenuBtn>
+			)}
 
-			{modalData.open && <Modal modalData={modalData} setModalData={setModalData} />}
+			{modalData.open && editMode && <Modal modalData={modalData} setModalData={setModalData} />}
 			<S.Title>{post.title}</S.Title>
 			<S.Content>{post.body}</S.Content>
 			<S.ButtonsWrapper>
@@ -47,7 +57,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 					</S.EditNav>
 				)}
 				<S.PostDetailsButton to={`/posts/${post.id}`} onClick={() => handlePost(post)}>
-					Full Version
+					DETAILS
 				</S.PostDetailsButton>
 			</S.ButtonsWrapper>
 		</S.PostLink>

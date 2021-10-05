@@ -12,6 +12,12 @@ a {
 	background: inherit;
 }
 
+button {
+	border: none;
+	background-color: inherit;
+	cursor: pointer;
+}
+
 * {
 	box-sizing: border-box;
 }
