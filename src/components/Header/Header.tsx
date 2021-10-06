@@ -20,12 +20,8 @@ const Header: React.FC = () => {
 				<S.LinkBtn to='/' onClick={() => handleGoBack()}>
 					Posts
 				</S.LinkBtn>
-				{postData.id && (
-					<>
-						<S.Separator>{'>'}</S.Separator>
-						<S.LinkTitle>{postData.title}</S.LinkTitle>
-					</>
-				)}
+				{postData.id && <S.Separator />}
+				{postData.id && <S.LinkTitle>{postData.title}</S.LinkTitle>}
 			</S.Breadcrumbs>
 		</S.Wrapper>
 	);

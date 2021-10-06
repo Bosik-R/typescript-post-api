@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { variables } from '../../styleVariables';
 
 export const Wrapper = styled.section`
 	width: 50%;
@@ -20,16 +21,16 @@ export const InheritData = styled.div`
 
 export const Title = styled.h1`
 	width: 100%;
-	padding: 10px;
-	border-bottom: 2px solid #094000;
-	border-top: 2px solid #094000;
+	padding: 15px;
+	border-bottom: 2px solid ${variables.color.border};
+	border-top: 2px solid ${variables.color.border};
 
 	@media (max-width: 768px) {
 		font-size: 18px;
 	}
 
 	@media (max-width: 425px) {
-		font-size: 12px;
+		font-size: 16px;
 	}
 `;
 
@@ -50,16 +51,23 @@ export const BtnWrapper = styled.nav`
 `;
 
 export const GoBackBtn = styled(Link)`
+	align-self: flex-end;
+	margin: 15px;
 	padding: 6px 10px;
-	border: 1px solid #033500;
+	border: 1px solid ${variables.color.border};
 	border-radius: 10px;
 	cursor: pointer;
-	color: #000000;
+	color: ${variables.color.fontDark};
 	transition: all 0.4s ease-in-out;
 
-	&:hover {
-		background-color: #033500;
-		color: #ffffff;
+	@media (max-width: 425px) {
+		font-size: 12px;
+	}
+
+	&:hover,
+	:focus {
+		background-color: ${variables.color.bgPrimary};
+		color: ${variables.color.fontLight};
 	}
 `;
 
@@ -67,29 +75,33 @@ interface Props {
 	editMode: boolean;
 }
 
+export const TitleComments = styled(Title)`
+	position: relative;
+	overflow: hidden;
+`;
+
 export const AddCommentBtn = styled.button<Props>`
-	align-self: flex-start;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	float: right;
 	padding: 6px 10px;
-	margin-right: 30px;
-	border: 1px solid #033500;
+	border: 1px solid ${variables.color.border};
 	border-radius: 10px;
 	cursor: pointer;
 	font-size: 16px;
-	background-color: inherit;
+	background-color: ${variables.color.bgLight};
 	font-family: inherit;
-	${({ editMode }) =>
-		editMode
-			? 'transform: scale(1); opacity: 1; cursor: pointer'
-			: `transform: scale(0.5); opacity: 0; cursor: default`};
-
-	//transform: ${({ editMode }) => (editMode ? 'scale(1)' : 'scale(0.3)')};
-	//opacity: ${({ editMode }) => (editMode ? '1' : '0')};
-	//cursor: ${({ editMode }) => (editMode ? 'pointer' : 'default')};
+	transform: ${({ editMode }) => (editMode ? 'translateY(0)' : `translateY(-150%)`)};
 	transition: all 0.4s ease-in-out;
 
 	&:hover {
-		background-color: #033500;
-		color: #ffffff;
+		background-color: ${variables.color.bgPrimary};
+		color: ${variables.color.fontLight};
+	}
+
+	@media (max-width: 425px) {
+		font-size: 12px;
 	}
 `;
 
@@ -107,7 +119,7 @@ export const NoCommentsMessage = styled.h1`
 export const Comment = styled.li`
 	padding: 0 0 10px 0;
 	margin-bottom: 20px;
-	border-bottom: 1px solid #bbbbbb;
+	border-bottom: 1px solid ${variables.color.borderSeparator};
 	list-style: none;
 
 	@media (max-width: 425px) {

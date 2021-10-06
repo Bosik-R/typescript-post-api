@@ -23,7 +23,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 		setModalData({ open: true, id: post.id, type: type, data: value });
 	};
 
-	/* JSON Placeholder does not support real patch or delete method that's why I simulate this on the response Array but every handler has a commented fetch request */
+	/* JSON Placeholder does not support real patch or delete method that's why I simulate this on the response Array */
 
 	const handleDelete = async () => {
 		const filtered = posts.filter((p) => p.id !== post.id);
@@ -37,6 +37,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 					<S.Option onClick={() => handleOpenModal('title', post.title)}>edit title</S.Option>
 					<S.Option onClick={() => handleOpenModal('text', post.body)}>edit text</S.Option>
 					<S.Option onClick={() => handleDelete()}>delete post</S.Option>
+					<S.OptionClose onClick={() => setOpenMobileMenu(!openMobileMenu)}>Close</S.OptionClose>
 				</S.MobileMenu>
 			)}
 			{editMode && smallOrMobile && (
@@ -53,7 +54,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 					<S.EditNav editMode={editMode}>
 						<S.NavBtn onClick={() => handleOpenModal('title', post.title)}>EDIT TITLE</S.NavBtn>
 						<S.NavBtn onClick={() => handleOpenModal('text', post.body)}>EDIT TEXT</S.NavBtn>
-						<S.NavBtn onClick={() => handleDelete()}>DELETE POST</S.NavBtn>
+						<S.NavBtnDelete onClick={() => handleDelete()}>DELETE POST</S.NavBtnDelete>
 					</S.EditNav>
 				)}
 				<S.PostDetailsButton to={`/posts/${post.id}`} onClick={() => handlePost(post)}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 import { useMediaQuery } from 'react-responsive';
+import { variables } from '../../styleVariables';
 
 const MyLoaderPosts: React.FC = () => {
 	const smallOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -8,7 +9,13 @@ const MyLoaderPosts: React.FC = () => {
 	return (
 		<div style={{ marginBottom: 30 }}>
 			{smallOrMobile ? (
-				<ContentLoader speed={2} width={298} height={237} viewBox='0 0 298 237' backgroundColor='#f3f3f3' foregroundColor='#ecebeb'>
+				<ContentLoader
+					speed={2}
+					width={298}
+					height={237}
+					viewBox='0 0 298 237'
+					backgroundColor={variables.color.loaderBg}
+					foregroundColor={variables.color.loaderForeground}>
 					<rect x='16' y='15' rx='5' ry='5' width='266' height='4' />
 					<rect x='16' y='222' rx='5' ry='5' width='268' height='4' />
 					<rect x='15' y='16' rx='5' ry='5' width='4' height='207' />
@@ -21,7 +28,13 @@ const MyLoaderPosts: React.FC = () => {
 					<rect x='160' y='179' rx='10' ry='10' width='110' height='33' />
 				</ContentLoader>
 			) : (
-				<ContentLoader speed={2} width={604} height={240} viewBox='0 0 604 240' backgroundColor='#f3f3f3' foregroundColor='#ecebeb'>
+				<ContentLoader
+					speed={2}
+					width={604}
+					height={240}
+					viewBox='0 0 604 240'
+					backgroundColor={variables.color.loaderBg}
+					foregroundColor={variables.color.loaderForeground}>
 					<rect x='2' y='2' rx='10' ry='10' width='600' height='4' />
 					<rect x='2' y='232' rx='10' ry='10' width='600' height='4' />
 					<rect x='2' y='4' rx='5' ry='5' width='4' height='230' />

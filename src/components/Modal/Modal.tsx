@@ -15,17 +15,50 @@ const Modal: React.FC<Props> = ({ modalData, setModalData }) => {
 
 	const handleConfirm = async () => {
 		const type = modalData.type;
-		if (type === 'comment') {
-			const lastId = comments[comments.length - 1].id;
-			setComments([...comments, { id: lastId + 1, name: commentName, body: newValue }]);
-		} else {
+		let patchData = {};
+		if (type === 'title' || type === 'text') {
+			if (type === 'title') patchData = { title: newValue };
+			if (type === 'text') patchData = { body: newValue };
+
+			const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${modalData.id}`, {
+				method: 'PATCH',
+				body: JSON.stringify(patchData),
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+				},
+			});
+			const data = await response.json();
+
 			const filtered: Array<PostProps> = posts.map((p) => {
-				if (p.id === modalData.id && type === 'title') return { ...p, title: newValue };
-				if (p.id === modalData.id && type === 'text') return { ...p, body: newValue };
+				if (p.id === modalData.id) return data;
 				return p;
 			});
+
 			setPosts(filtered);
 		}
+
+		if (type === 'comment') {
+			const random = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
+
+			const response = await fetch(
+				`https://jsonplaceholder.typicode.com/posts/${modalData.id}/comments`,
+				{
+					method: 'POST',
+					body: JSON.stringify({
+						name: commentName,
+						body: newValue,
+						userId: random(1, 10),
+					}),
+					headers: {
+						'Content-type': 'application/json; charset=UTF-8',
+					},
+				}
+			);
+
+			const data = await response.json();
+			setComments([...comments, data]);
+		}
+
 		setModalData(initialModalData);
 	};
 

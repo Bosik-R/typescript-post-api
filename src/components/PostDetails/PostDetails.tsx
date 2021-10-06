@@ -43,16 +43,26 @@ const PostDetails: React.FC = () => {
 				{modalData.open && <Modal modalData={modalData} setModalData={setModalData} />}
 				<S.Title>{postData.title}</S.Title>
 				<S.Paragraph>{postData.body}</S.Paragraph>
-				<S.BtnWrapper>
+				{/* <S.AddCommentBtn
+						disabled={!editMode}
+						editMode={editMode}
+						onClick={() =>
+							setModalData({ ...modalData, open: true, type: 'comment', id: postData.id })
+						}>
+						Add comment
+					</S.AddCommentBtn> */}
+				<S.GoBackBtn to='/'>Go back</S.GoBackBtn>
+				<S.TitleComments>
+					Comments
 					<S.AddCommentBtn
 						disabled={!editMode}
 						editMode={editMode}
-						onClick={() => setModalData({ ...modalData, open: true, type: 'comment' })}>
+						onClick={() =>
+							setModalData({ ...modalData, open: true, type: 'comment', id: postData.id })
+						}>
 						Add comment
 					</S.AddCommentBtn>
-					<S.GoBackBtn to='/'>Go back</S.GoBackBtn>
-				</S.BtnWrapper>
-				<S.Title>Comments</S.Title>
+				</S.TitleComments>
 			</S.InheritData>
 			<S.CommentsWrapper>
 				{status.loading && (

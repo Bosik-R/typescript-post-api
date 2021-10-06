@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../Header/Header';
+import { variables } from '../../styleVariables';
 
 const Container = styled.div`
 	max-width: 1024px;
 	width: 100%;
 	min-height: 500px;
 	margin: 0 auto;
-	border: 1px solid #5c5c5c;
+	border: 1px solid ${variables.color.borderAppContainer};
 	border-radius: 20px;
 	margin-bottom: 20px;
 	overflow: hidden;
