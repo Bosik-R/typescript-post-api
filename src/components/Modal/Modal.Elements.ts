@@ -5,7 +5,7 @@ interface PropsEditArea {
 	textTitle: string;
 }
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled.form`
 	position: absolute;
 	top: 0;
 	left: 0;

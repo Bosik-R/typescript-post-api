@@ -13,7 +13,9 @@ const Modal: React.FC<Props> = ({ modalData, setModalData }) => {
 	const [newValue, setNewValue] = useState(modalData.data);
 	const [commentName, setcommentName] = useState('');
 
-	const handleConfirm = async () => {
+	const handleConfirm = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
 		const type = modalData.type;
 		let patchData = {};
 		if (type === 'title' || type === 'text') {
@@ -63,7 +65,7 @@ const Modal: React.FC<Props> = ({ modalData, setModalData }) => {
 	};
 
 	return (
-		<S.ModalWrapper>
+		<S.ModalWrapper onSubmit={(e) => handleConfirm(e)}>
 			{modalData.type === 'comment' && (
 				<S.EditArea
 					textTitle={'commentName'}
@@ -73,6 +75,7 @@ const Modal: React.FC<Props> = ({ modalData, setModalData }) => {
 					placeholder='comment title'
 					value={commentName}
 					onChange={(e) => setcommentName(e.target.value)}
+					required
 				/>
 			)}
 			<S.EditArea
@@ -84,9 +87,10 @@ const Modal: React.FC<Props> = ({ modalData, setModalData }) => {
 				maxLength={modalData.type === 'title' ? 80 : 200}
 				onChange={(e) => setNewValue(e.target.value)}
 				placeholder={modalData.type === 'comment' ? modalData.type : ''}
+				required
 			/>
 			<S.ModalBtnWrapper>
-				<S.BtnConfirm onClick={() => handleConfirm()}>CONFIRM</S.BtnConfirm>
+				<S.BtnConfirm type='submit'>CONFIRM</S.BtnConfirm>
 				<S.BtnCancle onClick={() => setModalData(initialModalData)}>CANCLE</S.BtnCancle>
 			</S.ModalBtnWrapper>
 		</S.ModalWrapper>
