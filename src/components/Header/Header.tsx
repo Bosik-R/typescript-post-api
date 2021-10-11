@@ -13,9 +13,11 @@ const Header: React.FC = () => {
 	return (
 		<S.Wrapper>
 			<S.Title>{`{JSON}`} Placeholder</S.Title>
-			<S.EditModeBtn edit={editMode} onClick={() => setEditMode(!editMode)}>
-				EDIT MODE
-			</S.EditModeBtn>
+			<S.EditModeBtnWrapper edit={editMode}>
+				<S.EditModeBtn edit={editMode} onClick={() => setEditMode(!editMode)}>
+					EDIT MODE
+				</S.EditModeBtn>
+			</S.EditModeBtnWrapper>
 			<S.Breadcrumbs>
 				<S.LinkBtn to='/' onClick={() => handleGoBack()}>
 					Posts

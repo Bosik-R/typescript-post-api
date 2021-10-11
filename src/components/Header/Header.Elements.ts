@@ -25,15 +25,51 @@ export const Title = styled.h1`
 `;
 
 export const EditModeBtn = styled.button<{ edit: boolean }>`
+	position: relative;
+	background-color: ${variables.color.bgEditBtn};
+	color: ${({ edit }) =>
+		edit ? variables.color.fontEditModeBtnOn : variables.color.fontEditModeBtnOff};
+	border-radius: inherit;
+	padding: 8px 10px;
+	cursor: pointer;
+	font-weight: bold;
+	z-index: 10;
+
+	&:active {
+		transform: scale(0.95);
+	}
+`;
+
+export const EditModeBtnWrapper = styled.div<{ edit: boolean }>`
 	position: absolute;
 	top: 25px;
 	right: 100px;
-	background: ${({ edit }) => (edit ? variables.color.bgLight : variables.color.editBtnHover)};
-	color: ${({ edit }) => (edit ? variables.color.fontDark : variables.color.fontLight)};
-	border: 1px solid ${variables.color.borderSeparator};
 	border-radius: 10px;
-	padding: 8px 10px;
-	cursor: pointer;
+
+	&::after,
+	::before {
+		content: '';
+		position: absolute;
+		border-radius: inherit;
+		top: 2px;
+		left: 2px;
+		right: 2px;
+		bottom: 2px;
+		transition: all 0.4s ease;
+	}
+
+	&::after {
+		background-color: ${variables.color.fontEditModeBtnOff};
+		box-shadow: ${variables.boxShadowEditModeBtnOff};
+		z-index: 1;
+	}
+
+	&::before {
+		background-color: ${variables.color.bgLight};
+		box-shadow: ${variables.boxShadowEditModeBtnOn};
+		z-index: 2;
+		opacity: ${({ edit }) => (edit ? '1' : '0')};
+	}
 
 	@media (max-width: 768px) {
 		right: 50px;
