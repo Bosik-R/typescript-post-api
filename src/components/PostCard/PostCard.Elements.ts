@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ThreeDotsVertical } from '@styled-icons/bootstrap/ThreeDotsVertical';
-import { variables } from '../../styleVariables';
+import { variables } from '../../styles/styleVariables';
 
 export const PostLink = styled.div`
 	position: relative;
@@ -35,7 +35,7 @@ interface MobileMenuIconProps {
 
 export const MobileMenuIcon = styled(ThreeDotsVertical)<MobileMenuIconProps>`
 	width: 20px;
-	color: ${variables.color.fontDark};
+	color: ${({ theme }) => theme.color.fontDark};
 	background-color: transparent;
 	${({ openMobileMenu }) => openMobileMenu && 'transform: rotate(90deg)'};
 	transition: transform 0.2s ease;
@@ -48,19 +48,19 @@ export const MobileMenu = styled.div`
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;
-	background-color: ${variables.color.bgLight};
+	background-color: ${({ theme }) => theme.color.bgLight};
 	overflow: hidden;
-	box-shadow: ${variables.boxShadowMobileMenu};
+	box-shadow: ${({ theme }) => theme.boxShadowMobileMenu};
 `;
 
 export const Option = styled.button`
 	width: 140px;
 	text-align: center;
 	padding: 7px;
-	border-bottom: 2px solid ${variables.color.fontLight};
+	border-bottom: 2px solid ${({ theme }) => theme.color.fontLight};
 	font-weight: bold;
-	color: ${variables.color.fontLight};
-	background-color: ${variables.color.bgPrimary};
+	color: ${({ theme }) => theme.color.fontLight};
+	background-color: ${({ theme }) => theme.color.bgPrimary};
 
 	&:last-child {
 		border-bottom: none;
@@ -68,8 +68,8 @@ export const Option = styled.button`
 `;
 
 export const OptionClose = styled(Option)`
-	background-color: ${variables.color.bgCloseDelete};
-	color: ${variables.color.fontLight};
+	background-color: ${({ theme }) => theme.color.bgCloseDelete};
+	color: ${({ theme }) => theme.color.fontLight};
 `;
 
 export const Title = styled.h1`
@@ -117,38 +117,38 @@ export const NavBtn = styled.button`
 	margin: 0px 12px;
 	font-weight: 600;
 	letter-spacing: 1px;
-	box-shadow: ${variables.boxShadowNavBtn};
+	box-shadow: ${({ theme }) => theme.boxShadowNavBtn};
 	border-radius: 10px;
 	cursor: pointer;
-	color: ${variables.color.fontDark};
-	background-color: ${variables.color.bgLight};
+	color: ${({ theme }) => theme.color.fontDark};
+	background-color: ${({ theme }) => theme.color.bgLight};
 	transition: all 0.3s ease-in-out;
 
 	&:hover {
-		background-color: ${variables.color.bgPrimary};
-		color: ${variables.color.fontLight};
+		background-color: ${({ theme }) => theme.color.bgPrimary};
+		color: ${({ theme }) => theme.color.fontLight};
 	}
 `;
 
 export const NavBtnDelete = styled(NavBtn)`
 	&:hover {
-		background-color: ${variables.color.bgCloseDelete};
+		background-color: ${({ theme }) => theme.color.bgCloseDelete};
 	}
 `;
 
 export const PostDetailsButton = styled(Link)`
 	position: relative;
-	box-shadow: ${variables.boxShadowNavBtn};
+	box-shadow: ${({ theme }) => theme.boxShadowNavBtn};
 	margin-right: 10px;
 	border-radius: 10px;
-	color: ${variables.color.fontLight};
-	background-color: ${variables.color.bgPrimary};
+	color: ${({ theme }) => theme.color.fontLight};
+	background-color: ${({ theme }) => theme.color.bgPrimary};
 	font-size: 14px;
 	font-weight: 600;
 	padding: 7px 13px;
 
 	@media (min-width: 651px) {
-		color: ${variables.color.fontDark};
+		color: ${({ theme }) => theme.color.fontDark};
 		background-color: transparent;
 		overflow: hidden;
 		font-size: 20px;
@@ -162,14 +162,14 @@ export const PostDetailsButton = styled(Link)`
 			left: 0;
 			width: 105%;
 			height: 100%;
-			background-color: ${variables.color.bgPrimary};
+			background-color: ${({ theme }) => theme.color.bgPrimary};
 			transform: translateX(-100%);
 			transition: transform 0.3s ease;
 			z-index: -1;
 		}
 
 		&:hover {
-			color: ${variables.color.fontLight};
+			color: ${({ theme }) => theme.color.fontLight};
 
 			&::before {
 				transform: translateX(0);

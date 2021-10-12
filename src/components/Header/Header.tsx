@@ -1,5 +1,6 @@
 import React from 'react';
-import { useGlobalContext, initialPostData, initialCommentsData } from '../../utils/GlobalContext';
+import { useGlobalContext } from '../../utils/GlobalContext';
+import { initialPostData, initialCommentsData } from '../../utils/initialData';
 import * as S from './Header.Elements';
 
 const Header: React.FC = () => {

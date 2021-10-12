@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 import { useMediaQuery } from 'react-responsive';
-import { variables } from '../../styleVariables';
+import { variables } from '../../styles/styleVariables';
 
 const MyLoaderPosts: React.FC = () => {
 	const smallOrMobile = useMediaQuery({ query: '(max-width: 768px)' });

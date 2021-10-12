@@ -4,13 +4,14 @@ import Layout from './components/Layout/Layout';
 import MainPage from './components/MainPage/MainPage';
 import Message from './components/Message/Message';
 import PostDetails from './components/PostDetails/PostDetails';
-import { GlobalContext, initialPostData, PostProps, CommentProps, initialCommentsData } from './utils/GlobalContext';
-import { Status, initialStatus } from './utils/initialData';
+import { GlobalContext } from './utils/GlobalContext';
+import { initialPostData, initialStatus, initialCommentsData } from './utils/initialData';
+import { StatusProps, PostProps, CommentProps } from './utils/interfaces';
 import { url, method } from './utils/fetchData';
 import MyLoaderPosts from './components/Loading/MyLoaderPosts';
 
 const App: React.FC = () => {
-	const [status, setStatus] = useState<Status>(initialStatus);
+	const [status, setStatus] = useState<StatusProps>(initialStatus);
 	const [posts, setPosts] = useState<Array<PostProps>>([]);
 	const [postData, setPostData] = useState<PostProps>(initialPostData);
 	const [comments, setComments] = useState<Array<CommentProps>>(initialCommentsData);
@@ -35,11 +36,21 @@ const App: React.FC = () => {
 		// setting a timeout function to demostrate the loading skeleton
 		setTimeout(() => {
 			getPosts();
-		}, 1500);
+		}, 800);
 	}, []);
 
 	return (
-		<GlobalContext.Provider value={{ editMode, setEditMode, posts, setPosts, postData, setPostData, comments, setComments }}>
+		<GlobalContext.Provider
+			value={{
+				editMode,
+				setEditMode,
+				posts,
+				setPosts,
+				postData,
+				setPostData,
+				comments,
+				setComments,
+			}}>
 			<BrowserRouter>
 				<Layout>
 					<Switch>

@@ -1,7 +1,13 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { initialCommentsData, initialPostData, useGlobalContext } from '../../utils/GlobalContext';
+import { useGlobalContext } from '../../utils/GlobalContext';
 import { method, urlComments } from '../../utils/fetchData';
-import { Status, initialStatus, initialModalData } from '../../utils/initialData';
+import {
+	initialStatus,
+	initialModalData,
+	initialCommentsData,
+	initialPostData,
+} from '../../utils/initialData';
+import { ModalProps, StatusProps } from '../../utils/interfaces';
 import * as S from './PostDetails.Elements';
 import MyLoader from '../Loading/MyLoaderComments';
 import Message from '../Message/Message';
@@ -9,8 +15,8 @@ import Modal from '../Modal/Modal';
 
 const PostDetails: React.FC = () => {
 	const { comments, setComments, editMode, postData, setPostData } = useGlobalContext();
-	const [status, setStatus] = useState<Status>(initialStatus);
-	const [modalData, setModalData] = useState(initialModalData);
+	const [status, setStatus] = useState<StatusProps>(initialStatus);
+	const [modalData, setModalData] = useState<ModalProps>(initialModalData);
 
 	const getPostDetails = async () => {
 		try {
@@ -30,7 +36,7 @@ const PostDetails: React.FC = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			getPostDetails();
-		}, 1000);
+		}, 800);
 		return () => {
 			setPostData(initialPostData);
 			setComments(initialCommentsData);
@@ -43,14 +49,6 @@ const PostDetails: React.FC = () => {
 				{modalData.open && <Modal modalData={modalData} setModalData={setModalData} />}
 				<S.Title>{postData.title}</S.Title>
 				<S.Paragraph>{postData.body}</S.Paragraph>
-				{/* <S.AddCommentBtn
-						disabled={!editMode}
-						editMode={editMode}
-						onClick={() =>
-							setModalData({ ...modalData, open: true, type: 'comment', id: postData.id })
-						}>
-						Add comment
-					</S.AddCommentBtn> */}
 				<S.GoBackBtn to='/'>Go back</S.GoBackBtn>
 				<S.TitleComments>
 					Comments

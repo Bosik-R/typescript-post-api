@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ArrowIosForwardOutline } from '@styled-icons/evaicons-outline/ArrowIosForwardOutline';
-import { variables } from '../../styleVariables';
+import { variables } from '../../styles/styleVariables';
 
 export const Wrapper = styled.header`
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	border-bottom: 1px solid ${variables.color.borderAppContainer};
+	border-bottom: 1px solid ${({ theme }) => theme.color.borderAppContainer};
 `;
 
 export const Title = styled.h1`
 	padding: 20px;
 	margin: 0;
-	background-color: ${variables.color.headerTitleBg};
+	background-color: ${({ theme }) => theme.color.headerTitleBg};
 	text-align: center;
-	color: ${variables.color.fontLight};
+	color: ${({ theme }) => theme.color.fontLight};
 	overflow: hidden;
 
 	@media (max-width: 650px) {
@@ -26,7 +26,7 @@ export const Title = styled.h1`
 
 export const EditModeBtn = styled.button<{ edit: boolean }>`
 	position: relative;
-	background-color: ${variables.color.bgEditBtn};
+	background-color: ${({ theme }) => theme.color.bgEditBtn};
 	color: ${({ edit }) =>
 		edit ? variables.color.fontEditModeBtnOn : variables.color.fontEditModeBtnOff};
 	border-radius: inherit;
@@ -59,14 +59,14 @@ export const EditModeBtnWrapper = styled.div<{ edit: boolean }>`
 	}
 
 	&::after {
-		background-color: ${variables.color.fontEditModeBtnOff};
-		box-shadow: ${variables.boxShadowEditModeBtnOff};
+		background-color: ${({ theme }) => theme.color.fontEditModeBtnOff};
+		box-shadow: ${({ theme }) => theme.boxShadowEditModeBtnOff};
 		z-index: 1;
 	}
 
 	&::before {
-		background-color: ${variables.color.bgLight};
-		box-shadow: ${variables.boxShadowEditModeBtnOn};
+		background-color: ${({ theme }) => theme.color.bgLight};
+		box-shadow: ${({ theme }) => theme.boxShadowEditModeBtnOn};
 		z-index: 2;
 		opacity: ${({ edit }) => (edit ? '1' : '0')};
 	}
@@ -114,7 +114,7 @@ export const Separator = styled(ArrowIosForwardOutline)`
 
 export const LinkTitle = styled.span`
 	margin: 0 7px;
-	color: ${variables.color.fontDimmed};
+	color: ${({ theme }) => theme.color.fontDimmed};
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;

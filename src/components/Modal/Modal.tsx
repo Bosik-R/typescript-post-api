@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useGlobalContext, PostProps } from '../../utils/GlobalContext';
+import { useGlobalContext } from '../../utils/GlobalContext';
 import * as S from './Modal.Elements';
-import { ModalProps, initialModalData } from '../../utils/initialData';
+import { initialModalData } from '../../utils/initialData';
+import { ModalProps, PostProps } from '../../utils/interfaces';
 
 interface Props {
 	modalData: ModalProps;

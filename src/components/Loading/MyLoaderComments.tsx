@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
-import { variables } from '../../styleVariables';
+import { variables } from '../../styles/styleVariables';
 
 const MyLoaderComments: React.FC = () => (
 	<div style={{ float: 'left' }}>

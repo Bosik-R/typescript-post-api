@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { variables } from '../../styleVariables';
 
 interface PropsEditArea {
 	textTitle: string;
@@ -14,7 +13,7 @@ export const ModalWrapper = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: ${variables.color.bgLight};
+	background-color: ${({ theme }) => theme.color.bgLight};
 	border-radius: 10px;
 	overflow: hidden;
 	padding: 15px;
@@ -30,7 +29,7 @@ export const EditArea = styled.textarea<PropsEditArea>`
 	overflow: auto;
 	font-size: 16px;
 	margin-bottom: 10px;
-	border-bottom: 1px solid ${variables.color.borderSeparator};
+	border-bottom: 1px solid ${({ theme }) => theme.color.borderSeparator};
 
 	${({ textTitle }) => {
 		switch (textTitle) {
@@ -62,13 +61,13 @@ export const ModalBtnWrapper = styled.div`
 export const BtnConfirm = styled.button`
 	padding: 8px 12px;
 	margin: 0 10px;
-	color: ${variables.color.fontLight};
-	background-color: ${variables.color.bgConfirm};
+	color: ${({ theme }) => theme.color.fontLight};
+	background-color: ${({ theme }) => theme.color.bgConfirm};
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
 `;
 
 export const BtnCancle = styled(BtnConfirm)`
-	background-color: ${variables.color.bgCloseDelete};
+	background-color: ${({ theme }) => theme.color.bgCloseDelete};
 `;

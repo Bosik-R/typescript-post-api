@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { variables } from '../../styleVariables';
+import { variables } from '../../styles/styleVariables';
 
 export const Wrapper = styled.section`
 	width: 50%;
@@ -22,8 +22,8 @@ export const InheritData = styled.div`
 export const Title = styled.h1`
 	width: 100%;
 	padding: 15px;
-	border-bottom: 2px solid ${variables.color.border};
-	border-top: 2px solid ${variables.color.border};
+	border-bottom: 2px solid ${({ theme }) => theme.color.border};
+	border-top: 2px solid ${({ theme }) => theme.color.border};
 
 	@media (max-width: 768px) {
 		font-size: 18px;
@@ -54,10 +54,10 @@ export const GoBackBtn = styled(Link)`
 	align-self: flex-end;
 	margin: 15px;
 	padding: 6px 10px;
-	border: 1px solid ${variables.color.border};
+	border: 1px solid ${({ theme }) => theme.color.border};
 	border-radius: 10px;
 	cursor: pointer;
-	color: ${variables.color.fontDark};
+	color: ${({ theme }) => theme.color.fontDark};
 	transition: all 0.4s ease-in-out;
 
 	@media (max-width: 425px) {
@@ -66,8 +66,8 @@ export const GoBackBtn = styled(Link)`
 
 	&:hover,
 	:focus {
-		background-color: ${variables.color.bgPrimary};
-		color: ${variables.color.fontLight};
+		background-color: ${({ theme }) => theme.color.bgPrimary};
+		color: ${({ theme }) => theme.color.fontLight};
 	}
 `;
 
@@ -86,18 +86,18 @@ export const AddCommentBtn = styled.button<Props>`
 	top: 10px;
 	float: right;
 	padding: 6px 10px;
-	border: 1px solid ${variables.color.border};
+	border: 1px solid ${({ theme }) => theme.color.border};
 	border-radius: 10px;
 	cursor: pointer;
 	font-size: 16px;
-	background-color: ${variables.color.bgLight};
+	background-color: ${({ theme }) => theme.color.bgLight};
 	font-family: inherit;
 	transform: ${({ editMode }) => (editMode ? 'translateY(0)' : `translateY(-150%)`)};
 	transition: all 0.4s ease-in-out;
 
 	&:hover {
-		background-color: ${variables.color.bgPrimary};
-		color: ${variables.color.fontLight};
+		background-color: ${({ theme }) => theme.color.bgPrimary};
+		color: ${({ theme }) => theme.color.fontLight};
 	}
 
 	@media (max-width: 425px) {
@@ -119,7 +119,7 @@ export const NoCommentsMessage = styled.h1`
 export const Comment = styled.li`
 	padding: 0 0 10px 0;
 	margin-bottom: 20px;
-	border-bottom: 1px solid ${variables.color.borderSeparator};
+	border-bottom: 1px solid ${({ theme }) => theme.color.borderSeparator};
 	list-style: none;
 
 	@media (max-width: 425px) {

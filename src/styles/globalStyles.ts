@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
 body,
 textarea {
 	margin: 0;
@@ -29,3 +32,4 @@ button {
 	cursor: pointer;
 	color: #000000;
 }
+`;

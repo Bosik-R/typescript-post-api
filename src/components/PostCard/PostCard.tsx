@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useGlobalContext, PostProps } from '../../utils/GlobalContext';
+import { useGlobalContext } from '../../utils/GlobalContext';
+import { ModalProps, PostProps } from '../../utils/interfaces';
 import { useMediaQuery } from 'react-responsive';
 import { initialModalData } from '../../utils/initialData';
 import * as S from './PostCard.Elements';
@@ -11,9 +12,9 @@ type PostCardProps = {
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
 	const { posts, editMode, setPosts, setPostData } = useGlobalContext();
-	const smallOrMobile = useMediaQuery({ query: '(max-width: 650px)' });
-	const [modalData, setModalData] = useState(initialModalData);
+	const [modalData, setModalData] = useState<ModalProps>(initialModalData);
 	const [openMobileMenu, setOpenMobileMenu] = useState(false);
+	const smallOrMobile = useMediaQuery({ query: '(max-width: 650px)' });
 
 	const handlePost = (postDetails: PostProps) => {
 		setPostData({ id: postDetails.id, title: postDetails.title, body: postDetails.body });
